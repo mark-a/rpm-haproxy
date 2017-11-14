@@ -167,6 +167,9 @@ fi
 %attr(0644,root,root) %config %{_sysconfdir}/rsyslog.d/49-%{name}.conf
 
 %changelog
+* Mon Nov 14 2017 Mark A <info@iomind.de>
+- Update for HAproxy 1.7.8
+
 * Mon Jul 31 2017 David Bezemer <info@davidbezemer.nl>
 - Update for HAproxy 1.7.8
 
