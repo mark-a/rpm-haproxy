@@ -1,11 +1,16 @@
 [Unit]
 Description=HAProxy Load Balancer
 After=syslog.target network.target
+StartLimitInterval=0
+StartLimitBurst=0
 
 [Service]
-ExecStart=/usr/sbin/haproxy -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid
+ExecStart=/usr/sbin/haproxy -W -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid
+ExecStartPre=/usr/sbin/haproxy -f /etc/haproxy/haproxy.cfg -c -q 
 ExecReload=/bin/kill -USR2 $MAINPID
 KillMode=mixed
+Restart=always
+Type=forking
 
 [Install]
 WantedBy=multi-user.target
