@@ -18,7 +18,7 @@ Release: %{release}%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.haproxy.org/
-Source0: http://www.haproxy.org/download/1.6/src/%{name}-%{version}.tar.gz
+Source0: http://www.haproxy.org/download/1.8/src/%{name}-%{version}.tar.gz
 Source1: %{name}.cfg
 %{?el6:Source2: %{name}.init}
 %{?el7:Source2: %{name}.service}
@@ -90,7 +90,6 @@ regparm_opts="USE_REGPARM=1"
 %{__install} -c -m 755 %{SOURCE2} %{buildroot}%{_sysconfdir}/rc.d/init.d/%{name}
 %endif    
 %if 0%{?el7}
-%{__install} -s %{name}-systemd-wrapper %{buildroot}%{_sbindir}/
 %{__install} -p -D -m 0644 %{SOURCE2} %{buildroot}%{_unitdir}/%{name}.service
 %endif
 %{__install} -c -m 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/%{name}/
@@ -157,7 +156,6 @@ fi
 %attr(0755,root,root) %config %_sysconfdir/rc.d/init.d/%{name}
 %endif    
 %if 0%{?el7}
-%attr(0755,root,root) %{_sbindir}/%{name}-systemd-wrapper
 %attr(-,root,root) %{_unitdir}/%{name}.service
 %endif
 %dir %{_sysconfdir}/%{name}
@@ -167,8 +165,8 @@ fi
 %attr(0644,root,root) %config %{_sysconfdir}/rsyslog.d/49-%{name}.conf
 
 %changelog
-* Mon Nov 14 2017 Mark A <info@iomind.de>
-- Update for HAproxy 1.7.8
+* Mon Jan 05 2018 Mark A <info@iomind.de>
+- Updated for HAproxy 1.8.3
 
 * Mon Jul 31 2017 David Bezemer <info@davidbezemer.nl>
 - Update for HAproxy 1.7.8
